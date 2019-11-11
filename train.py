@@ -344,7 +344,7 @@ def main():
     train_loader = DataLoader(train_dataset, batch_size=hparams.batch_size, collate_fn=custom_collate, shuffle=True, num_workers=hparams.num_workers)
     val_loader = DataLoader(val_dataset, batch_size=hparams.batch_size, collate_fn=custom_collate, num_workers=hparams.num_workers)
     
-    criterion = torch.nn.CrossEntropyLoss(ignore_index=PAD_id, reduction="sum").to(device)
+    criterion = torch.nn.NLLLoss(ignore_index=PAD_id, reduction="sum").to(device)
     optimizer = torch.optim.Adam(model.parameters(), hparams.lr)
     writer = SummaryWriter()
     
